@@ -1,2 +1,2 @@
 # OIBSIP
-ossi_task
+oasis_task
