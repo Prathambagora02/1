@@ -1,25 +1,27 @@
-document.querySelector('#push').onclick = function(){
-    if(document.querySelector('#newtask input').value.length == 0){
-        alert("Kindly Enter Task Name!!!!")
-    }
-
-    else{
-        document.querySelector('#tasks').innerHTML += `
-            <div class="task">
-                <span id="taskname">
-                    ${document.querySelector('#newtask input').value}
-                </span>
-                <button class="delete">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-            </div>
-        `;
-
-        var current_tasks = document.querySelectorAll(".delete");
-        for(var i=0; i<current_tasks.length; i++){
-            current_tasks[i].onclick = function(){
-                this.parentNode.remove();
-            }
+let screen = document.getElementById('screen');
+buttons = document.querySelectorAll('button');
+let screenValue = '';
+for (item of buttons) {
+    item.addEventListener('click', (e) => {
+        buttonText = e.target.innerText;
+        console.log('Button text is ', buttonText);
+        if (buttonText == 'X') {
+            buttonText = '*';
+            screenValue += buttonText;
+            screen.value = screenValue;
         }
-    }
+        else if (buttonText == 'C') {
+            screenValue = "";
+            screen.value = screenValue;
+        }
+        else if (buttonText == '=') {
+            screen.value = eval(screenValue);
+        }
+        else {
+            screenValue += buttonText;
+            screen.value = screenValue;
+        }
+
+    })
 }
+
